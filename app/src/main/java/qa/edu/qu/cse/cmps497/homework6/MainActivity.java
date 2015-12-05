@@ -133,11 +133,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         private List<String> getJSON(String data) {
-            final String LONGITUDE_TAG = "lng";
-            final String LATITUDE_TAG = "lat";
-            final String MAGNITUDE_TAG = "magnitude";
+            //final String LONGITUDE_TAG = "lng";
+            //final String LATITUDE_TAG = "lat";
+            //final String MAGNITUDE_TAG = "magnitude";
             //final String EARTHQUAKE_TAG = "earthquakes";
             final String HOMEWORKS_TAG="Homeworks";
+            final String TITLE_TAG="title";
 
             List<String> result = new ArrayList<String>();
 
@@ -159,12 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // Summarize homework data as a string and add it to
                     // result
-                    result.add(MAGNITUDE_TAG + ":"
-                            + homework.get(MAGNITUDE_TAG) + ","
-                            + LATITUDE_TAG + ":"
-                            + homework.get(LATITUDE_TAG) + ","
-                            + LONGITUDE_TAG + ":"
-                            + homework.get(LONGITUDE_TAG));
+                    result.add(""+homework.get(TITLE_TAG));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
