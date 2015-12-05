@@ -22,64 +22,32 @@ public class Homework {
         points=po;
 
     }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
     }
 
     public String getSummary() {
         return summary;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public String getPurpose() {
+        return purpose;
     }
 
     public String getDue() {
         return due;
     }
 
-    public void setDue(String due) {
-        this.due = due;
-    }
-
-    public boolean getIs_screenshot() {
-        return is_screenshot;
-    }
-
-    public void setIs_screenshot(boolean is_screenshot) {
-        this.is_screenshot = is_screenshot;
-    }
 
     public String getScreenshot() {
         return screenshot;
-    }
-
-    public void setScreenshot(String screenshot) {
-        this.screenshot = screenshot;
     }
 
     public int getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public boolean getIs_screenshot() {
+        return is_screenshot;
     }
-
-
-
-
 }

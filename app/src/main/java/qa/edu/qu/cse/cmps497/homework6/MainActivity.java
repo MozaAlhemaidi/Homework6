@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MainActivity.this,DetailsActivity.class);
-                //intent.putExtra("http",http);
-                //intent.putExtra("selectedHW",(Parcelable)homewworkList.get(position));
                 Homework hw = homewworkList.get(position);
                 intent.putExtra("title",hw.getTitle());
                 intent.putExtra("summary",hw.getSummary());
@@ -176,9 +174,9 @@ public class MainActivity extends AppCompatActivity {
                     // Summarize homework data as a string and add the title  to
                     // result
                     String title=""+homework.get(TITLE_TAG);
-                    String summary=""+homework.get(SUMMARY_TAG);;
-                    String purpose=""+homework.get(PURPOSE_TAG);;
-                    String due=""+homework.get(DUE_TAG);;
+                    String summary=""+homework.get(SUMMARY_TAG);
+                    String purpose=""+homework.get(PURPOSE_TAG);
+                    String due=""+homework.get(DUE_TAG);
                     boolean is_screenshot=(boolean)homework.get(IS_SCREENSHOT_TAG);
                     String screenshot = (is_screenshot)? ""+homework.get(SCREENSHOT_TAG):null;
                     int points=(int)homework.get(POINTS_TAG);
