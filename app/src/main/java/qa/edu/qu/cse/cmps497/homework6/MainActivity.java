@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mTextView;
     ProgressBar mProgressBar;
     ListView mListView;
-
+    ArrayList<Homework> homewworkList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         mTextView=(TextView)findViewById(R.id.textview_wait);
         mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
         mListView=(ListView)findViewById(R.id.listView);
-        //TODO: launch the AsyncTask to populate the listvie
+        homewworkList=new ArrayList<Homework>();
+        //TODO: launch the AsyncTask to populate the listview
         //TODO: with online content
         new HttpGetJSON().execute(http);
 
@@ -57,7 +58,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MainActivity.this,DetailsActivity.class);
-                //intent.putExtra("Homework",)
+                //intent.putExtra("http",http);
+                //intent.putExtra("selectedHW",(Parcelable)homewworkList.get(position));
+                Homework hw = homewworkList.get(position);
+                intent.putExtra("title",hw.getTitle());
+                intent.putExtra("summary",hw.getSummary());
+                intent.putExtra("purpose",hw.getPurpose());
+                intent.putExtra("Due",hw.getDue());
+                intent.putExtra("is_screenshot",hw.getIs_screenshot());
+                intent.putExtra("points",hw.getPoints());
+                intent.putExtra("screenshot",hw.getScreenshot());
+                startActivity(intent);
+
             }
         });
     }
@@ -133,12 +145,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         private List<String> getJSON(String data) {
-            //final String LONGITUDE_TAG = "lng";
-            //final String LATITUDE_TAG = "lat";
-            //final String MAGNITUDE_TAG = "magnitude";
-            //final String EARTHQUAKE_TAG = "earthquakes";
-            final String HOMEWORKS_TAG="Homeworks";
+            final String HOMEWORKS_TAG="homeworks";
             final String TITLE_TAG="title";
+            final String SUMMARY_TAG="summary";
+            final String PURPOSE_TAG="purpose";
+            final String DUE_TAG="due";
+            final String IS_SCREENSHOT_TAG="is_screenshot";
+            final String SCREENSHOT_TAG="screenshot";
+            final String POINTS_TAG="points";
+
 
             List<String> result = new ArrayList<String>();
 
@@ -158,9 +173,17 @@ public class MainActivity extends AppCompatActivity {
                     // Get single homework data - a Map
                     JSONObject homework = (JSONObject) homeworks.get(idx);
 
-                    // Summarize homework data as a string and add it to
+                    // Summarize homework data as a string and add the title  to
                     // result
-                    result.add(""+homework.get(TITLE_TAG));
+                    String title=""+homework.get(TITLE_TAG);
+                    String summary=""+homework.get(SUMMARY_TAG);;
+                    String purpose=""+homework.get(PURPOSE_TAG);;
+                    String due=""+homework.get(DUE_TAG);;
+                    boolean is_screenshot=(boolean)homework.get(IS_SCREENSHOT_TAG);
+                    String screenshot = (is_screenshot)? ""+homework.get(SCREENSHOT_TAG):null;
+                    int points=(int)homework.get(POINTS_TAG);
+                    homewworkList.add(new Homework(title,summary,purpose,due,is_screenshot,screenshot,points));
+                    result.add(title);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
